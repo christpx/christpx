@@ -1,6 +1,6 @@
 <?php
 require "function.php";
-
+require "header.php";
 $id = $_GET["id"];
 $data = query("SELECT * FROM tbpoliklinik WHERE idpoli='$id'")[0];
 
@@ -31,7 +31,9 @@ if(isset($_POST["button"])){
     <title>Document</title>
 </head>
 <body>
-<h1>ubah tabel poli</h1>
+<div style="margin: 0px 200px 0px 200px">
+
+    <h1>Ubah tabel poli</h1>
     <form action="" method="post" enctype="multipart/form-data">
         <input type="hidden" name="idpoli" value="<?= $data["idpoli"]; ?>">
         <ul>
@@ -43,8 +45,9 @@ if(isset($_POST["button"])){
                 <label for="nrp">Gedung : </label>
                 <input type="text" name="gedung" id="nrp" required value="<?= $data["gedung"]; ?>">
             </li>
-            <li><button type="submit" name="button">submit</button></li>
+            <li><button type="submit" name="button" class="btn btn-success">Submit</button></li>
         </ul>
     </form>
+</div>
 </body>
 </html>

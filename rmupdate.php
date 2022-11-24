@@ -27,6 +27,9 @@ if(isset($_POST["button"])){
         </script>";
     }
 }
+$pasien = query("select * from tbpasien");
+$dokter = query("select * from tbdok");
+$poli = query("select * from tbpoliklinik");
 ?>
 
 <!DOCTYPE html>
@@ -43,12 +46,24 @@ if(isset($_POST["button"])){
         <input type="hidden" name="idpoli" value="<?= $data["idpoli"]; ?>">
         <ul>
             <li>
-                <label for="nrp">Nama Poli : </label>
-                <input type="text" name="namapoli" id="nrp" required value="<?= $data["namapoli"]; ?>">
+                <label for="nrp">Id rekammedis : </label>
+                <input type="text" name="idrm" id="nrp" required value="<?= $data["idrm"]; ?>">
             </li>
             <li>
-                <label for="nrp">Gedung : </label>
-                <input type="text" name="gedung" id="nrp" required value="<?= $data["gedung"]; ?>">
+                <label for="idpasien">Id pasien : </label>
+                <select name="idpasien" id="idpasien">
+                    <?php foreach($pasien as $p){ ?>
+                    <option value="<?= $p["namapasien"]; ?>"><?= $p["namapasien"]; ?></option>
+                    <?php } ?>
+                </select>
+            </li>
+            <li>
+                <label for="keluhan">Keluhan : </label>
+                <input type="text" name="keluhan" id="keluhan" required value="<?= $data['keluhan'];?>">
+            </li>
+            <li>
+                <label for="iddokter">Id Dokter : </label>
+                <input type="text">
             </li>
             <li><button type="submit" name="button">submit</button></li>
         </ul>

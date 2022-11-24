@@ -23,7 +23,7 @@ ON tbrekammedis.idpoli = tbpoliklinik.idpoli");
 
 <div style = "margin:0px 200px 0px 200px">
 
-    <h1>Table Poli Klinik</h1>
+    <h1>Table Rekam Medis</h1>
     <br>
 
     <a href="rmcreate.php" class="btn btn-outline-primary">Tambah data</a>
@@ -57,8 +57,8 @@ ON tbrekammedis.idpoli = tbpoliklinik.idpoli");
             <th><?= $a["namapoli"]; ?></th>
             <th><?= $a["gedung"]; ?></th>
             <th><?= $a["tglperiksa"]; ?></th>
-            <th><a href="rmupdate.php?id=<?= $a["idpoli"]; ?>" class="btn btn-primary">update</a>
-            <a href="rmdelete.php?id=<?= $a["idpoli"]; ?>" class="btn btn-danger">delete</a></th>
+            <th><a href="rmupdate.php?id=<?= $a["idrm"]; ?>" class="btn btn-primary">update</a>
+            <a href="rmdelete.php?id=<?= $a['idrm']; ?>" class="btn btn-danger">delete</a></th>
         </tr>
         <?php
         $b++;

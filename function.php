@@ -207,4 +207,16 @@ function rmcreate($data){
 
     return mysqli_affected_rows($db);
 }
+function rmupdate($data){
+
+
+}
+
+function rmdelete($id){
+    global $db;
+
+    mysqli_query($db,"DELETE FROM tbrekammedis WHERE idrm='$id'");
+
+    return mysqli_affected_rows($db);
+}
 ?>
