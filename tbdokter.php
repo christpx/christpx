@@ -3,7 +3,12 @@ require "function.php";
 require "header.php";
 
 
+
 $data = query("SELECT * FROM tbdok");
+
+if(isset($_POST['cari'])){
+    $data = search($_POST['keyword']);
+}
 ?>
 
 
@@ -18,9 +23,14 @@ $data = query("SELECT * FROM tbdok");
 <body>
     <div style = "margin:0px 200px 0px 200px">
 
+        
         <h1>Table Dokter</h1>
         <br>
-
+        
+        <form action="" method="post" class="black">
+            <input type="text" name="keyword" autofocus placeholder="cari data" autocomoplete="off" class="searchbar black">
+            <button for="keyword" name="cari" class="btn btn-dark">Cari!</button>
+        </form>
     
     <a href="doktercreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br>

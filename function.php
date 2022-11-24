@@ -208,6 +208,36 @@ function rmcreate($data){
     return mysqli_affected_rows($db);
 }
 function rmupdate($data){
+    global $db;
+
+    $id = $data["idrm"];
+    $namapasien = $data["namapasien"];
+    $keluhan = htmlspecialchars($data["keluhan"]);
+    $namadokter = $data["namadokter"];
+    $diagnosa = $data["diagnosa"];
+    $namapoli = $data["namapoli"];
+    $tglperiksa = $data["tglperiksa"];
+
+    $pasien = query("SELECT idpasien FROM tbpasien WHERE namapasien = '$namapasien'")[0]["idpasien"];
+    $dokter = query("SELECT iddokter FROM tbdok WHERE namadokter = '$namadokter'")[0]["iddokter"];
+    $poli = query("SELECT idpoli FROM tbpoliklinik WHERE namapoli = '$namapoli'")[0]["idpoli"];
+
+    $query = "UPDATE tbrekammedis SET
+                idrm ='$id',
+                idpasien='$pasien',
+                keluhan='$keluhan',
+                iddokter = '$dokter',
+                diagnosa = '$diagnosa',
+                idpoli = '$poli',
+                tglperiksa = '$tglperiksa'
+                 WHERE idrm='$id';
+    ";
+    mysqli_query($db, $query);
+
+    return mysqli_affected_rows($db);
+
+
+
 
 
 }
@@ -219,4 +249,79 @@ function rmdelete($id){
 
     return mysqli_affected_rows($db);
 }
+
+
+function search($keyword){
+    global $db;
+
+    $query = "SELECT * FROM tbdok WHERE iddokter LIKE '%$keyword%' OR
+    namadokter LIKE '%$keyword%' OR
+    spesialis LIKE '%$keyword%' OR
+    alamat LIKE '%$keyword%' OR
+    notelp LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
+
+function searchobat($keyword){
+    global $db;
+
+    $query = "SELECT * FROM tbobat WHERE idobat LIKE '%$keyword%' OR
+    namaobat LIKE '%$keyword%' OR
+    ketobat LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
+function searchpasien($keyword){
+    global $db;
+
+    $query = "SELECT * FROM tbpasien WHERE idpasien  LIKE '%$keyword%' OR
+    nomoridentitas LIKE '%$keyword%' OR
+    namapasien LIKE '%$keyword%' OR
+    jeniskelamin LIKE '%$keyword%' OR
+    alamat LIKE '%$keyword%' OR
+    notelp LIKE '%$keyword%'
+    ";
+
+    return query($query);
+}
+
+function searchpoli($keyword){
+    global $db;
+
+    $query = "SELECT * FROM tbpoliklinik WHERE idpoli LIKE '%$keyword%' OR
+    namapoli LIKE '%$keyword%' OR
+    gedung LIKE '%$keyword%' 
+    ";
+
+    return query($query);
+}
+
+function searchrm($keyword){
+    global $db;
+
+    $query = "SELECT * FROM tbrekammedis
+    INNER JOIN tbpasien
+    ON tbrekammedis.idpasien = tbpasien.idpasien 
+    INNER JOIN tbdok 
+    ON tbrekammedis.iddokter = tbdok.iddokter 
+    INNER JOIN tbpoliklinik 
+    ON tbrekammedis.idpoli = tbpoliklinik.idpoli
+     WHERE
+    namadokter LIKE '%$keyword%' OR
+    namapasien LIKE '%$keyword%' OR
+    keluhan LIKE '%$keyword%' OR
+    diagnosa LIKE '%$keyword%' OR
+    namapoli LIKE '%$keyword%' OR
+    gedung LIKE '%$keyword%' OR
+    tglperiksa LIKE '%$keyword%'
+    ";
+
+    return query($query);
+
+    // return var_dump($query);
+}
+
 ?>

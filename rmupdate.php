@@ -12,18 +12,18 @@ ON tbrekammedis.idpoli = tbpoliklinik.idpoli
 WHERE idrm = '$id'")[0];
 
 if(isset($_POST["button"])){
-    if(poliupdate($_POST) > 0){
+    if(rmupdate($_POST) > 0){
         echo "
         <script>
             alert('data berhasil diubah');
-            document.location.href = 'tbpoli.php';
+            document.location.href = 'tbrekammedis.php';
         </script>
         ";
     }
     else{
         echo "<script>
         alert('data gagal diubah');
-        document.location.href = 'tbpoli.php';
+        document.location.href = 'tbrekammedis.php';
         </script>";
     }
 }
@@ -50,8 +50,8 @@ $poli = query("select * from tbpoliklinik");
                 <input type="text" name="idrm" id="nrp" required value="<?= $data["idrm"]; ?>">
             </li>
             <li>
-                <label for="idpasien">Id pasien : </label>
-                <select name="idpasien" id="idpasien">
+                <label for="namapasien">Nama pasien : </label>
+                <select name="namapasien" id="namapasien">
                     <?php foreach($pasien as $p){ ?>
                     <option value="<?= $p["namapasien"]; ?>"><?= $p["namapasien"]; ?></option>
                     <?php } ?>
@@ -62,9 +62,31 @@ $poli = query("select * from tbpoliklinik");
                 <input type="text" name="keluhan" id="keluhan" required value="<?= $data['keluhan'];?>">
             </li>
             <li>
-                <label for="iddokter">Id Dokter : </label>
-                <input type="text">
+                <label for="namadokter">Nama dokter : </label>
+                <select name="namadokter" id="namadokter">
+                <?php foreach($dokter as $d){ ?>
+                    <option value="<?= $d["namadokter"]; ?>"><?= $d["namadokter"]; ?></option>
+                    <?php } ?>
+
+                </select>
             </li>
+            <li>
+                <label for="diagnosa">Diagnosa : </label>
+                <input type="text" name="diagnosa" id="diagnosa" required value="<?= $data['diagnosa'];?>">
+            </li>
+            <li>
+                <label for="namapoli">Nama Poli : </label>
+                <select name="namapoli" id="namapoli">
+                    <?php foreach($poli as $po){ ?>
+                        <option value="<?= $po["namapoli"]; ?>"><?= $po["namapoli"]; ?></option>
+                        <?php } ?>
+                </select>
+            </li>
+            <li>
+                <label for="tanggal">Tanggal : </label>
+                <input type="date" id="tanggal" name="tglperiksa" required value="<?= $data['tglperiksa'];?>">
+            </li>
+
             <li><button type="submit" name="button">submit</button></li>
         </ul>
     </form>

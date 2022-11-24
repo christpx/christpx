@@ -2,6 +2,10 @@
 require "function.php";
 require "header.php";
 $data = query("SELECT * FROM tbobat");
+
+if(isset($_POST['cari'])){
+    $data = searchobat($_POST['keyword']);
+}
 ?>
 
 
@@ -19,6 +23,10 @@ $data = query("SELECT * FROM tbobat");
 
         <h1>Table Obat</h1>
     <br>
+    <form action="" method="post" class="black">
+        <input type="text" name="keyword" autofocus placeholder="cari data" autocomoplete="off" class="searchbar black">
+        <button for="keyword" name="cari" class="btn btn-dark">Cari!</button>
+    </form>
 
     <a href="obatcreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>

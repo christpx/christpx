@@ -3,6 +3,9 @@ require "function.php";
 require "header.php";
 
 $data = query("SELECT * FROM tbpasien");
+if(isset($_POST['cari'])){
+    $data = searchpasien($_POST['keyword']);
+}
 ?>
 
 
@@ -20,6 +23,10 @@ $data = query("SELECT * FROM tbpasien");
         
         <h1>Table Pasien</h1>
     <br>
+    <form action="" method="post" class="black">
+        <input type="text" name="keyword" autofocus placeholder="cari data" autocomoplete="off" class="searchbar black">
+        <button for="keyword" name="cari" class="btn btn-dark">Cari!</button>
+    </form>
 
     <a href="pasiencreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>

@@ -8,6 +8,10 @@ INNER JOIN tbdok
 ON tbrekammedis.iddokter = tbdok.iddokter 
 INNER JOIN tbpoliklinik 
 ON tbrekammedis.idpoli = tbpoliklinik.idpoli");
+
+if(isset($_POST['cari'])){
+    $data = searchrm($_POST['keyword']);
+}
 ?>
 
 
@@ -25,6 +29,10 @@ ON tbrekammedis.idpoli = tbpoliklinik.idpoli");
 
     <h1>Table Rekam Medis</h1>
     <br>
+    <form action="" method="post" class="black">
+        <input type="text" name="keyword" autofocus placeholder="cari data" autocomoplete="off" class="searchbar black">
+        <button for="keyword" name="cari" class="btn btn-dark">Cari!</button>
+    </form>
 
     <a href="rmcreate.php" class="btn btn-outline-primary">Tambah data</a>
     <br><br>

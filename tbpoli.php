@@ -3,6 +3,10 @@ require "function.php";
 require "header.php";
 $data = query("SELECT * FROM tbpoliklinik");
 
+if(isset($_POST['cari'])){
+    $data = searchpoli($_POST['keyword']);
+}
+
 ?>
 
 
@@ -19,6 +23,11 @@ $data = query("SELECT * FROM tbpoliklinik");
 
         <h1>Table Poli Klinik</h1>
         <br>
+
+        <form action="" method="post" class="black">
+        <input type="text" name="keyword" autofocus placeholder="cari data" autocomoplete="off" class="searchbar black">
+        <button for="keyword" name="cari" class="btn btn-dark">Cari!</button>
+    </form>
 
     <a href="policreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>
