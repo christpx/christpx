@@ -1,5 +1,6 @@
 <?php
 require "function.php";
+require "header.php";
 
 $data = query("SELECT * FROM tbpasien");
 ?>
@@ -14,16 +15,17 @@ $data = query("SELECT * FROM tbpasien");
     <title>Document</title>
 </head>
 <body>
-    
-<a href="index.php">back</a>
-    <h1>Table Pasien</h1>
+<div style = "margin:0px 200px 0px 200px">
+
+        
+        <h1>Table Pasien</h1>
     <br>
 
-    <a href="pasiencreate.php">tambah tabel pasien</a>
+    <a href="pasiencreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>
 
-
-    <table border="1" cellpadding="10" cellspacing="0">
+    
+    <table border="1" cellpadding="10" cellspacing="0" class="table table-dark table-striped">
 
         <tr>
             <th>no</th>
@@ -34,11 +36,11 @@ $data = query("SELECT * FROM tbpasien");
             <th>no telp</th>
             <th>aksi</th>
         </tr>
-
+        
         <?php
         $b = 1;
         foreach($data as $a){
-        ?>
+            ?>
         <tr>
             <th><?= $b; ?></th>
             <th><?= $a["nomoridentitas"]; ?></th>
@@ -46,12 +48,14 @@ $data = query("SELECT * FROM tbpasien");
             <th><?= $a["jeniskelamin"]; ?></th>
             <th><?= $a["alamat"]; ?></th>
             <th><?= $a["notelp"]; ?></th>
-            <th><a href="pasienupdate.php?id=<?= $a["idpasien"]; ?>">update</a>|<a href="pasiendelete.php?id=<?= $a["idpasien"]; ?>">delete</a></th>
+            <th><a href="pasienupdate.php?id=<?= $a["idpasien"]; ?>" class="btn btn-primary">update</a>
+            <a href="pasiendelete.php?id=<?= $a["idpasien"]; ?>" class="btn btn-danger">delete</a></th>
         </tr>
         <?php
         $b++;
-        }
-        ?>
+    }
+    ?>
     </table>
+</div>
 </body>
 </html>

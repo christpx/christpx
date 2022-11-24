@@ -1,6 +1,6 @@
 <?php
 require "function.php";
-
+require "header.php";
 $data = query("SELECT * FROM tbobat");
 ?>
 
@@ -14,15 +14,17 @@ $data = query("SELECT * FROM tbobat");
     <title>Document</title>
 </head>
 <body>
-    <a href="index.php">back</a>
-    <h1>Table Obat</h1>
+    <div style = "margin:0px 200px 0px 200px">
+
+
+        <h1>Table Obat</h1>
     <br>
 
-    <a href="obatcreate.php">tambah tabel Poli Klinik</a>
+    <a href="obatcreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>
 
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="table table-striped table-dark">
 
         <tr>
             <th>no</th>
@@ -30,21 +32,23 @@ $data = query("SELECT * FROM tbobat");
             <th>gedung</th>
             <th>aksi</th>
         </tr>
-
+        
         <?php
         $b = 1;
         foreach($data as $a){
-        ?>
+            ?>
         <tr>
             <th><?= $b; ?></th>
             <th><?= $a["namaobat"]; ?></th>
             <th><?= $a["ketobat"]; ?></th>
-            <th><a href="obatupdate.php?id=<?= $a["idobat"]; ?>">update</a>|<a href="obatdelete.php?id=<?= $a["idobat"]; ?>">delete</a></th>
+            <th><a href="obatupdate.php?id=<?= $a["idobat"]; ?>" class="btn btn-primary">update</a>
+            <a href="obatdelete.php?id=<?= $a["idobat"]; ?>" class="btn btn-danger">delete</a></th>
         </tr>
         <?php
         $b++;
-        }
-        ?>
+    }
+    ?>
     </table>
+</div>
 </body>
 </html>

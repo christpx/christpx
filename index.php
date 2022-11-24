@@ -74,13 +74,13 @@
     <!-- Main Wrapper -->
     <div class="p-1 my-container active-cont">
       <!-- Top Nav -->
-      <nav class="navbar top-navbar navbar-light bg-light px-5">
-        <a class="btn border-0" id="menu-btn"><i class="bx bx-menu"></i></a>
+      <nav class="navbar top-navbar navbar-light bg-light px-5" style="margin:15px">
+        <a class="btn border-0" id="menu-btn" ><i class="bx bx-menu"></i></a>
       </nav>
       <!--End Top Nav -->
-      <h3 class="text-dark p-3">RESPONSIVE SIDEBAR NAV 💻 📱 
+      <h3 class="text-dark p-3">Data Rumah Sakit
       </h3>
-      <p class="px-3">Responsive navigation sidebar built using <a class="text-dark" href="https://getbootstrap.com/">Bootstrap 5</a>.</p>
+      <p class="px-3"></p>
     </div>
 
     <!-- bootstrap js -->

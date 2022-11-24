@@ -1,5 +1,7 @@
 <?php
 require "function.php";
+require "header.php";
+
 
 $data = query("SELECT * FROM tbdok");
 ?>
@@ -14,16 +16,19 @@ $data = query("SELECT * FROM tbdok");
     <title>Document</title>
 </head>
 <body>
-    <a href="index.php">back</a>
-    <h1>Table Dokter</h1>
+    <div style = "margin:0px 200px 0px 200px">
+
+        <h1>Table Dokter</h1>
+        <br>
+
+    
+    <a href="doktercreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br>
+    <br>
+    
 
-    <a href="doktercreate.php">tambah tabel dokter</a>
-    <br><br>
-
-
-    <table border="1" cellpadding="10" cellspacing="0">
-
+    <table border="1" cellpadding="10" cellspacing="0" class="table table-dark table-striped">
+        
         <tr>
             <th>no</th>
             <th>dokter</th>
@@ -32,23 +37,24 @@ $data = query("SELECT * FROM tbdok");
             <th>no telp</th>
             <th>aksi</th>
         </tr>
-
+        
         <?php
         $b = 1;
         foreach($data as $a){
-        ?>
+            ?>
         <tr>
             <th><?= $b; ?></th>
             <th><?= $a["namadokter"]; ?></th>
             <th><?= $a["spesialis"]; ?></th>
             <th><?= $a["alamat"]; ?></th>
             <th><?= $a["notelp"]; ?></th>
-            <th><a href="dokterupdate.php?id=<?= $a["iddokter"]; ?>">update</a>|<a href="dokterdelete.php?id=<?= $a["iddokter"]; ?>">delete</a></th>
+            <th><a href="dokterupdate.php?id=<?= $a["iddokter"]; ?>" class="btn btn-primary">update</a>|<a href="dokterdelete.php?id=<?= $a["iddokter"]; ?>" class="btn btn-danger">delete</a></th>
         </tr>
         <?php
         $b++;
-        }
-        ?>
+    }
+    ?>
     </table>
+</div>
 </body>
 </html>

@@ -1,7 +1,8 @@
 <?php
 require "function.php";
-
+require "header.php";
 $data = query("SELECT * FROM tbpoliklinik");
+
 ?>
 
 
@@ -14,15 +15,16 @@ $data = query("SELECT * FROM tbpoliklinik");
     <title>Document</title>
 </head>
 <body>
-    <a href="index.php">back</a>
-    <h1>Table Poli Klinik</h1>
-    <br>
+    <div style = "margin:0px 200px 0px 200px">
 
-    <a href="policreate.php">tambah tabel Poli Klinik</a>
+        <h1>Table Poli Klinik</h1>
+        <br>
+
+    <a href="policreate.php" class="btn btn-outline-primary">Tambah Data</a>
     <br><br>
 
 
-    <table border="1" cellpadding="10" cellspacing="0">
+    <table border="1" cellpadding="10" cellspacing="0" class="table table-striped table-dark">
 
         <tr>
             <th>no</th>
@@ -30,21 +32,23 @@ $data = query("SELECT * FROM tbpoliklinik");
             <th>gedung</th>
             <th>aksi</th>
         </tr>
-
+        
         <?php
         $b = 1;
         foreach($data as $a){
-        ?>
+            ?>
         <tr>
             <th><?= $b; ?></th>
             <th><?= $a["namapoli"]; ?></th>
             <th><?= $a["gedung"]; ?></th>
-            <th><a href="poliupdate.php?id=<?= $a["idpoli"]; ?>">update</a>|<a href="polidelete.php?id=<?= $a["idpoli"]; ?>">delete</a></th>
+            <th><a href="poliupdate.php?id=<?= $a["idpoli"]; ?>" class="btn btn-primary">update</a>
+            <a href="polidelete.php?id=<?= $a["idpoli"]; ?>" class="btn btn-danger">delete</a></th>
         </tr>
         <?php
         $b++;
-        }
-        ?>
+    }
+    ?>
     </table>
+    </div>
 </body>
 </html>
